@@ -1,0 +1,111 @@
+  {% extends "base.html" %}
+  {% load static %}
+
+  {% block content %}
+
+<!-- page title -->
+<section class="page-title-section overlay" data-background="{% static 'images/backgrounds/page-title.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">About Us</a></li>
+          <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+        </ul>
+        <p class="text-lighten">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /page title -->
+
+<!-- about -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <img style="height: 500px;width: 30%;" class="img-fluid w-100 mb-4" src="{{ about_content.image.url }}" alt="about image">
+        <h2 class="section-title">ABOUT OUR JOURNY</h2>
+        <p>{{ about_content.content|linebreaks }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /about -->
+
+<!-- funfacts -->
+<section class="section-sm bg-primary">
+  <div class="container">
+    <div class="row">
+      {% for funfact in funfacts %}
+      <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
+        <div class="text-center">
+          <h2 class="count text-white" data-count="{{ funfact.count }}">0</h2>
+          <h5 class="text-white">{{ funfact.description }}</h5>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- /funfacts -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<!-- success story -->
+<section class="section bg-cover" data-background="{% static 'images/backgrounds/success-story.jpg' %}">
+  <div class="container">
+    <div class="row">
+      {% for story in stories %}
+      <div class="col-lg-6 col-sm-4 position-relative success-video">
+        <a class="play-btn venobox" href="{{ story.video_url }}" data-vbtype="video">
+          <i class="ti-control-play"></i>
+        </a>
+      </div>
+      <div class="col-lg-6 col-sm-8">
+        <div class="bg-white p-5">
+          <h2 class="section-title">{{ story.title }}</h2>
+          <p>{{ story.content }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- /success story -->
+
+<!-- teachers -->
+<section class="section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <h2 class="section-title">Our Teachers</h2>
+        </div>
+        <!-- teacher -->
+        <!-- teacher -->
+        {% for teacher in teachers %}
+        <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+          <div class="card border-0 rounded-0 hover-shadow">
+            <img class="card-img-top rounded-0" src="{{ teacher.image.url }}" alt="teacher">
+            <div class="card-body">
+              <a href="{% url 'teacher_single-page' %}">
+                <h4 class="card-title">{{ teacher.name }}</h4>
+              </a>
+              <div class="d-flex justify-content-between">
+                <span>{{ teacher.job_title }}</span>
+                <ul class="list-inline">
+                  <li class="list-inline-item"><a class="text-color" href="{{ teacher.facebook }}"><i class="ti-facebook"></i></a></li>
+                  <li class="list-inline-item"><a class="text-color" href="{{ teacher.twitter }}"><i class="ti-twitter-alt"></i></a></li>
+                  <li class="list-inline-item"><a class="text-color" href="{{ teacher.google_plus }}"><i class="ti-google"></i></a></li>
+                  <li class="list-inline-item"><a class="text-color" href="{{ teacher.linkedin }}"><i class="ti-linkedin"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!-- /teachers -->
+
+  {% endblock content %}

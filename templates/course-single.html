@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- page title -->
+<section class="page-title-section overlay" data-background="{% static 'images/backgrounds/page-title.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="{% url 'courses-page' %}">Our Courses</a></li>
+          <li class="list-inline-item text-white h3 font-secondary nasted">Photography</li>
+        </ul>
+        <p class="text-lighten">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /page title -->
+
+<!-- section -->
+<section class="section-sm">
+  <div class="container">
+    {% for course in courses %}
+    <div class="row">
+      <div class="col-12 mb-4">
+        <!-- course thumb -->
+        <img src="{{ course.thumbnail.url }}" class="img-fluid w-80">
+      </div>
+    </div>
+    <!-- course info -->
+    <!-- course details -->
+    <br><div class="row">
+      <div class="col-12 mb-4">
+        <h3>About Course</h3>
+        <p>{{ course.description }}</p>
+      </div>
+    </div>
+    {% endfor %}  
+  </div>
+</section>
+<!-- /section -->
+
+
+
+{% endblock content %}

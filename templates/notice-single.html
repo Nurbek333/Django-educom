@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- page title -->
+<section class="page-title-section overlay" data-background="{% static 'images/backgrounds/page-title.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="{% url 'notice-page' %}">Notice</a></li>
+          <li class="list-inline-item text-white h3 font-secondary nasted">Notice Details</li>
+        </ul>
+        <p class="text-lighten">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /page title -->
+
+<!-- notice details -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex">
+          {% for notice in notices %}
+          <div class="text-center mr-4">
+            <div class="p-4 bg-primary text-white">
+                <span class="h2 d-block">{{ notice.date|date:"d" }}</span>{{ notice.date|date:"b,Y" }}
+            </div>
+          </div>
+          <!-- notice content -->
+          <div>
+            <h3 class="mb-4">{{ notice.title }}</h3>
+            <p>{{ notice.description }}</p>
+            <p>{{ notice.additional_content }}</p>
+            {% if notice.url %}
+            <a href="{{ notice.url }}" class="btn btn-primary">Download</a>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /notice details -->
+
+{% endblock content %}
